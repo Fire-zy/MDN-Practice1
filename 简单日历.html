@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="demo.css"/>
+	</head>
+	<body>
+
+	<div class="output" style="height: 500px;overflow: auto;">
+	  <label for="month">Select month: </label>
+	  <!--下拉菜单：月份-->
+	  <select id="month">
+	    <option value="January">January</option>
+	    <option value="February">February</option>
+	    <option value="March">March</option>
+	    <option value="April">April</option>
+	    <option value="May">May</option>
+	    <option value="June">June</option>
+	    <option value="July">July</option>
+	    <option value="August">August</option>
+	    <option value="September">September</option>
+	    <option value="October">October</option>
+	    <option value="November">November</option>
+	    <option value="December">December</option>
+	  </select>
+	
+	  <h1></h1>
+	
+	  <ul></ul>
+	</div>
+	<script>
+		let select = document.querySelector('select');
+		let list = document.querySelector('ul');
+		let h1 = document.querySelector('h1');
+		
+		//查看所选的月份
+		select.onchange = function() {
+			let choice = select.value;
+		
+		  // ADD CONDITIONAL HERE
+			let days=31;
+			if(choice=="February"){
+				days=28;
+			}else if(choice=="April"||choice=="June"||choice=="September"||choice=='November'){
+				days=30;
+			}
+		  createCalendar(days, choice);
+		}
+		
+		function createCalendar(days, choice) {
+		  list.innerHTML = '';
+		  h1.textContent = choice;
+		  for (let i = 1; i <= days; i++) {
+		    let listItem = document.createElement('li');
+		    listItem.textContent = i;
+		    list.appendChild(listItem);
+		  }
+		}
+		
+		createCalendar(31,'January');
+	</script>
+
+	</body>
+</html>

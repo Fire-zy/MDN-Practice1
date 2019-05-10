@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Function start</title>
+		<style>
+			.msgBox {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 242px;
+				background: #eee;
+			}
+			
+			.msgBox p {
+				line-height: 1.5;
+				padding: 10px 20px;
+				color: #333;
+				padding-left: 82px;
+				background-position: 25px center;
+				background-repeat: no-repeat;
+			}
+			
+			.msgBox button {
+				background: none;
+				border: none;
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-size: 1.1rem;
+				color: #aaa;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button>Display message box</button>
+
+		<!--<div class="msgBox">
+	  <p>This is a message box</p>
+	  <button>x</button>
+	</div>-->
+
+		<script>
+			function displayMessage(msgText, msgType) {
+				//把html元素放在html的变量中，方便接下来使用这个元素
+				var html = document.querySelector('html');
+				//创建<div>元素并且把该新建元素的地址放在叫panel的变量中
+				//这个元素将成为我们的消息框的外部容器
+				var panel = document.createElement('div');
+				//为panel元素添加值为msgBox的class属性
+				panel.setAttribute('class', 'msgBox');
+				//追加了设置好样式的panel元素
+				//该方法追加了元素的同时也把panel<div>元素指定为<html>的子元素
+				html.appendChild(panel);
+
+				//创建一个<p>元素，追加到了panel<div>之下
+				var msg = document.createElement('p');
+				msg.textContent = msgText;
+				panel.appendChild(msg);
+
+				//创建一个<button>元素，追加到了panel<div>之下
+				var closeBtn = document.createElement('button');
+				closeBtn.textContent = 'x';
+				panel.appendChild(closeBtn);
+
+				//添加点击事件，定义匿名函数，将消息提示框从父容器中删除，达到关闭的效果
+				//onclik按钮的属性
+				closeBtn.onclick = function() {
+					//移除html的子元素（这里指panel<div>）
+					//获取父级节点，父亲干掉儿子，儿子自己不能干掉自己
+					panel.parentNode.removeChild(panel);
+				}
+				if(msgType === 'warning') {
+					msg.style.backgroundImage = 'url(img/chat.png)';
+					panel.style.backgroundColor = 'red';
+				} else if(msgType === 'chat') {
+					msg.style.backgroundImage = 'url(img/warning.png)';
+					panel.style.backgroundColor = 'aqua';
+				} else {
+					msg.style.paddingLeft = '20px';
+				}
+			}
+			let btn = document.querySelector('button');
+			//我们要把它放在一个匿名函数里面，不然函数会直接调用
+			//而不是按钮点击之后才会调用
+			btn.onclick = function() {
+				//displayMessage('woo,this is a different message!');
+				displayMessage('Your inbox is almost full — delete some mails', 'warning');
+				displayMessage('Brian: Hi there, how are you today?', 'chat');
+			};
+		</script>
+	</body>
+
+</html>

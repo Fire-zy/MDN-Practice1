@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<label for="seacher">Seacher by contact name</label>
+		<input type="text" id="seacher"/>
+		<button>Seacher</button>
+		
+		<p></p>
+		
+		<script>
+//			1.首先我们有一些变量定义 - 我们有一个联系信息数组，每个项目是一个字符串，
+//			    包含一个以冒号分隔的名称和电话号码。
+//			2.接下来，我们将一个事件监听器附加到按钮（btn）上，这样当按下它时，
+//			    运行一些代码来执行搜索并返回结果。
+//			3.我们将输入的值输入到一个名为searchName的变量中，然后清空文本输入并重新对准它，
+//			    准备进行下一个搜索。
+//			4.现在有趣的部分，for循环：
+//				1.我们的计数器开始时为在0，直到计数器不再小于contacts.length，
+//				  并在循环的每次迭代之后将i递增1。
+//				2.在循环中，我们首先将当前联系人（contacts [i]）拆分为冒号字符，
+//			      并将生成的两个值存储在名为splitContact的数组中。
+//				3.然后，我们使用条件语句来测试splitContact [0]（联系人姓名）是否等于输入的searchName。
+//				  如果是，我们在段落中输入一个字符串来报告联系人的号码，并使用break来结束循环。
+//			5.在(contacts.length-1) 迭代后，如果联系人姓名与输入的搜索不符，
+//			    则段落文本设置为“未找到联系人”，循环继续迭代。
+			
+			let contacts=['Chris:2232322','Sarah:3453456','Bill:7654322','Mary:9998769','Dianne:9384975'];
+			let para=document.querySelector('p');
+			let input=document.querySelector('input');
+			let btn=document.querySelector('button');
+			
+			btn.addEventListener('click',function(){
+				let seacherName=input.value;
+				input.value='';
+				input.focus();
+				for(let i=0;i<contacts.length;i++){
+					let splitContact=contacts[i].split(":");
+					if(splitContact[0]==seacherName){
+						para.textContent=splitContact[0]+'\'s number is '+splitContact[1]+'.';
+						break;
+					}else{
+						para.textContent='Contact not found.'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

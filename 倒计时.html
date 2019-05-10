@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div class="output" style="height: 800px;overflow: auto;"></div>
+		<script>
+			let output = document.querySelector('.output');
+			let para = document.querySelector('p');
+			output.innerHTML = '';
+
+			for(let i = 10; i >= 0; i--) {
+				let para = document.createElement('p');
+				output.appendChild(para);
+				if(i == 10) {
+					para.textContent = 'Countdown 10';
+				} else if(i == 0) {
+					para.textContent = 'Blast off!';
+				} else {
+					para.textContent = i;
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+
 	<body>
 		<div class="output" style="min-height: 150px;">
 			<ul></ul>
@@ -17,28 +19,28 @@
 			totalBox.textContent = '';
 			// 将产品名称存入数组中
 			let products = ['Underpants:6.99',
-                'Socks:5.99',
-                'T-shirt:14.99',
-                'Trousers:31.99',
-                'Shoes:23.99'];			  
-			for (let i = 0; i < products.length; i++) { // number 2
-			  // 将名称和价格分别放到两个数组中
-			let subArray=products[i].split(':');
-			let name=subArray[0];
-			let price=Number(subArray[1]);
-			  // 总价
-			  total+=price;
-			 
-			  itemText = name+'-$'+price;
-			  
-			  
-			  let listItem = document.createElement('li');
-			  listItem.textContent = itemText;
-			  list.appendChild(listItem);
-			}
-			
-			totalBox.textContent = 'Total: $' + total.toFixed(2);
+				'Socks:5.99',
+				'T-shirt:14.99',
+				'Trousers:31.99',
+				'Shoes:23.99'
+			];
+			for(let i = 0; i < products.length; i++) { // number 2
+				// 将名称和价格分别放到两个数组中
+				let subArray = products[i].split(':');
+				let name = subArray[0];
+				let price = Number(subArray[1]);
+				// 总价
+				total += price;
 
+				itemText = name + '-$' + price;
+
+				let listItem = document.createElement('li');
+				listItem.textContent = itemText;
+				list.appendChild(listItem);
+			}
+
+			totalBox.textContent = 'Total: $' + total.toFixed(2);
 		</script>
 	</body>
+
 </html>
